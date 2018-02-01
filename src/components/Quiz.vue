@@ -8,14 +8,6 @@
       @click="checkAnswer($event, $store.state)"
       v-for="question in current.options">{{entities.decode(question)}}</p>
     </div>
-
-     <audio class="audio" id="correct" controls>
-      <source src="../assets/audio/correct.mp3" type="audio/mp3">
-    </audio>
-
-    <audio class="audio" id="wrong" controls>
-      <source src="../assets/audio/wrong.mp3" type="audio/mp3">
-    </audio>
   </div>
 </template>
 
@@ -26,8 +18,8 @@ import { XmlEntities } from 'html-entities';
 
 const entities = new XmlEntities();
 
-let correctAudio;
-let wrongAudio;
+const correctAudio = new Audio('/static/audio/correct.mp3');
+const wrongAudio = new Audio('/static/audio/wrong.mp3');
 
 
 export default {
@@ -66,8 +58,6 @@ export default {
     },
   },
   mounted() {
-    correctAudio = document.getElementById('correct');
-    wrongAudio = document.getElementById('wrong');
     if (this.$store.state.questions.length === 0) {
       this.$router.push({ name: 'Setup' });
     }
