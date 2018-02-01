@@ -81,7 +81,4 @@ export default {
   cursor: pointer;
 }
 
-.audio {
-  display: none;
-}
 </style>
